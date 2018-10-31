@@ -1,0 +1,49 @@
+// Animations contains a collection of mixins for typicall animations in css
+//--------------------------------------------------------------------------
+
+
+
+//Keyframe mixin default with vendor prefixes
+//-------------------------------------------
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }  
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }  
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
+//Transition mixin default with vendor prefixes
+//---------------------------------------------
+@mixin transition($property, $duration, $timing, $delay ) {
+    -webkit-transition: $property, $duration, $timing, $delay;
+    -moz-transition: $property, $duration, $timing, $delay;
+    -ms-transition: $property, $duration, $timing, $delay;
+    -o-transition: $property, $duration, $timing, $delay;
+    transition: $property, $duration, $timing, $delay;
+}
+
+// Show/Fade element with opacity change
+//--------------------------------------
+@mixin fade($type) {
+    @if $type == 'hide' {
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 1s, opacity 1s;
+    }
+    @else if $type == 'show' {
+      visibility: visible;
+      opacity: 1;
+      transition: visibility 1s, opacity 1s;
+    }
+}

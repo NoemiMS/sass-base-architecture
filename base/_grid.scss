@@ -1,0 +1,48 @@
+$breakpoints:(
+        'xs' : 0,
+        'sm' : 768,
+        'md' : 990,
+        'lg' : 1200,
+        'mlg' : 1024,
+        'xl' : 1440,
+        'xxl' : 1680
+);
+$main-gutter: 8; // px
+$layout-margin-sides:(
+        'left',
+        'right'
+);
+
+@mixin getLayout ($grid){
+  .row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: px2rem(-2 * $main-gutter);
+    margin-right: px2rem(-2 * $main-gutter);
+    & > [class^="col-"],
+    & > [class*=" col-"] {
+      flex-shrink: 0;
+      flex-grow: 1;
+    }
+  }
+  @each $bp,$bp_size in $breakpoints{
+    @media(min-width:#{$bp_size}px){
+      @for $col from 0 to $grid{
+        .col-#{$bp}-#{$col+1}_#{$grid}{
+          padding-left: px2rem(2 * $main-gutter);
+          padding-right: px2rem(2 * $main-gutter);
+          width : floor(100/$grid*($col+1)) * 1%;
+        }
+        @each $_side in $layout-margin-sides{
+          .offset-#{$_side}-#{$bp}-#{$col+1}_#{$grid}{
+            margin-#{$_side}: floor(100/$grid*($col+1)) * 1%;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@include getLayout(12);
