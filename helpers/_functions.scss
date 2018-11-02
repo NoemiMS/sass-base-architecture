@@ -1,0 +1,35 @@
+$font-base: 16;
+
+// ----- em ----- //
+//EM conversor
+//use:
+// .element{
+//   height: em(50, 16);
+// }
+@function em($target, $context: $font-base) {
+  @if ($target == 0) {
+    @return 0;
+  } @else {
+    @return #{$target / $context}em;
+  }
+}
+
+// ----- rem ----- //
+//REM conversor
+//use:
+//  .element {
+//    height: rem(50);
+//   }
+@function rem($size) {
+  @return #{$size / $font-base}rem;
+}
+
+// ----- pt ----- //
+//PT conversor
+//use:
+//  .element {
+//    height: pt(50);
+//   }
+@function pt($size) {
+  @return #{$size / 12}rem;
+}

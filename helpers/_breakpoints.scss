@@ -1,0 +1,32 @@
+//Media queries variables
+//-----------------------
+
+$desktop-hd: rem(1202);
+$desktop: rem(1024);
+$tablet: rem(768);
+$mobile: rem(320);
+// Media queries Mixins
+//-----------------------
+@mixin mobile {
+    @media (max-width: 767px) {
+      @content;
+    }
+  }
+  
+@mixin tablet {
+@media (min-width: #{$tablet}) {
+    @content;
+}
+}
+
+@mixin desktop {
+@media (min-width: #{$desktop}) {
+    @content;
+}
+}
+
+@mixin desktop-hd {
+@media (min-width: #{$desktop-hd}) {
+    @content;
+}
+}
