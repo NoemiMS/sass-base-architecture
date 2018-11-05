@@ -29,3 +29,36 @@
 //    }
 //}
 
+// Ellipsis
+//---------
+
+@mixin ellipsis($width: 100%) {
+    max-width: $width;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+//Ellipsis vertical
+//-----------------
+
+@mixin ellipsis($max-height, $lines: 2) {
+    // Fallback for non-webkit browsers.
+    // Fallback does not render ellipsis.
+    overflow: hidden;
+    max-height: $max-height;
+
+    // Webkit solution for multiline ellipsis
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $lines;
+
+    // Solution for Opera
+    text-overflow: -o-ellipsis-lastline;
+}
+
+// example of ellipsis mixin usage
+//.multiline-ellipsis {
+//    width: 30%;
+//    @include ellipsis(4rem, 4);
+//}
